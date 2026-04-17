@@ -1,0 +1,6 @@
+{
+  "name": "Movie Sheet Explorer",
+  "description": "A tool to convert Google Sheets movie data into structured JSON with a cinematic preview UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
