@@ -1,4 +1,5 @@
 import com.lagradost.cloudstream3.gradle.CloudstreamExtension
+import com.android.build.gradle.LibraryExtension
 
 buildscript {
     repositories {
@@ -17,7 +18,7 @@ apply(plugin = "com.android.library")
 apply(plugin = "kotlin-android")
 apply(plugin = "com.lagradost.cloudstream3.gradle")
 
-android {
+configure<LibraryExtension> {
     namespace = "com.example.moviesheet"
     compileSdk = 33
 
@@ -29,20 +30,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
-    compileOnly("com.github.recloudstream:cloudstream:master-SNAPSHOT")
-    implementation("com.github.lagradost:nice-http:0.4.5")
-    implementation(kotlin("stdlib"))
+    add("compileOnly", "com.github.recloudstream:cloudstream:master-SNAPSHOT")
+    add("implementation", "com.github.lagradost:nice-http:0.4.5")
+    add("implementation", kotlin("stdlib"))
 }
 
-cloudstream {
-    displayName = "GSheet Movie Addon"
-    description = "Addon xem phim từ Google Sheet"
-    authors = listOf("User")
+configure<CloudstreamExtension> {
+    setDisplayName("GSheet Movie Addon")
+    setDescription("Addon xem phim từ Google Sheet")
+    setAuthors(listOf("User"))
 }
