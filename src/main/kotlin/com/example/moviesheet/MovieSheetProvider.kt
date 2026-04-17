@@ -6,8 +6,8 @@ import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 
 class MovieSheetProvider : MainAPI() {
     override var name = "GSheet Movie Addon"
-    // QUAN TRỌNG: Link này sẽ tự động được ứng dụng React cung cấp qua API
-    override var mainUrl = "https://your-deployed-app.run.app" 
+    // URL này trỏ trực tiếp đến ứng dụng của bạn
+    override var mainUrl = "https://ais-dev-ugx43atinibtveei3f6mnq-553890561062.asia-southeast1.run.app" 
     override var supportedTypes = setOf(TvType.Movie)
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
