@@ -36,14 +36,13 @@ android {
 }
 
 dependencies {
-    val cloudstreamVersion = "master-SNAPSHOT"
-    compileOnly("com.github.recloudstream:cloudstream:$cloudstreamVersion")
+    compileOnly("com.github.recloudstream:cloudstream:master-SNAPSHOT")
     implementation("com.github.lagradost:nice-http:0.4.5")
     implementation(kotlin("stdlib"))
 }
 
 cloudstream {
-    setDisplayName("GSheet Movie Addon")
-    setDescription("Addon xem phim từ Google Sheet")
-    setAuthors(listOf("User"))
+    displayName = "GSheet Movie Addon"
+    description = "Addon xem phim từ Google Sheet"
+    authors = listOf("User")
 }
