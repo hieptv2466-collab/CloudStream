@@ -51,28 +51,14 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`);
-      const text = await response.text();
-      const jsonStart = text.indexOf('{');
-      const jsonEnd = text.lastIndexOf('}') + 1;
-      const jsonString = text.substring(jsonStart, jsonEnd);
-      const data = JSON.parse(jsonString);
+      const response = await fetch(`/api/movies?id=${sheetId}`);
+      if (!response.ok) throw new Error('API request failed');
+      const data = await response.json();
       
-      if (data.status === 'error') {
-        throw new Error(data.errors[0].detailed_message || 'Error fetching spreadsheet');
-      }
-
-      const rows = data.table.rows;
-      const formattedMovies: Movie[] = rows.map((row: any) => {
-        const cells = row.c;
-        return {
-          name: cells[0]?.v || '',
-          url: cells[1]?.v || '',
-          poster: cells[2]?.v || '',
-          episode: String(cells[3]?.v || ''),
-          sheet: 'Trang tính 1'
-        };
-      }).filter((m: Movie) => m.name && m.name !== 'Name');
+      const formattedMovies: Movie[] = data.map((movie: any) => ({
+        ...movie,
+        sheet: 'G-Sheet Data'
+      }));
 
       setMovies(formattedMovies);
     } catch (err) {
